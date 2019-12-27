@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BankModelStoreContainer" CdmEntityContainer="BankEntities">
+    <EntitySetMapping Name="Account">
+      <EntityTypeMapping TypeName="BankModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="Account_ID" ColumnName="Account_ID" />
+          <ScalarProperty Name="ID_Number" ColumnName="ID_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Money" ColumnName="Money" />
+          <ScalarProperty Name="Account_Type" ColumnName="Account_Type" />
+          <ScalarProperty Name="Opening_Time" ColumnName="Opening_Time" />
+          <ScalarProperty Name="Terms" ColumnName="Terms" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Fixed_deposit" ColumnName="Fixed_deposit" />
+          <ScalarProperty Name="到期时间" ColumnName="到期时间" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="是否按规定存款" ColumnName="是否按规定存款" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employer">
+      <EntityTypeMapping TypeName="BankModel.Employer">
+        <MappingFragment StoreEntitySet="Employer">
+          <ScalarProperty Name="Employer_ID" ColumnName="Employer_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Sallery" ColumnName="Sallery" />
+          <ScalarProperty Name="is_Administrator" ColumnName="is_Administrator" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rate">
+      <EntityTypeMapping TypeName="BankModel.Rate">
+        <MappingFragment StoreEntitySet="Rate">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Types" ColumnName="Types" />
+          <ScalarProperty Name="Terms" ColumnName="Terms" />
+          <ScalarProperty Name="Rate1" ColumnName="Rate1" />
+          <ScalarProperty Name="Rate2" ColumnName="Rate2" />
+          <ScalarProperty Name="Rate3" ColumnName="Rate3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Record">
+      <EntityTypeMapping TypeName="BankModel.Record">
+        <MappingFragment StoreEntitySet="Record">
+          <ScalarProperty Name="Record_ID" ColumnName="Record_ID" />
+          <ScalarProperty Name="Trading_Amount" ColumnName="Trading_Amount" />
+          <ScalarProperty Name="Trading_Time" ColumnName="Trading_Time" />
+          <ScalarProperty Name="Account_ID" ColumnName="Account_ID" />
+          <ScalarProperty Name="Capital" ColumnName="Capital" />
+          <ScalarProperty Name="Interest" ColumnName="Interest" />
+          <ScalarProperty Name="Operation_Type" ColumnName="Operation_Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

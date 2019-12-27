@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="AccountId" />
+    </Key>
+    <Property Name="AccountId" Type="nchar" MaxLength="5" Nullable="false" />
+    <Property Name="身份证号" Type="nchar" MaxLength="18" />
+    <Property Name="姓名" Type="nvarchar" MaxLength="50" />
+    <Property Name="金额" Type="money" />
+    <Property Name="存款类型" Type="nvarchar" MaxLength="4" />
+    <Property Name="开户时间" Type="date" />
+    <Property Name="存款时长" Type="int" />
+    <Property Name="利率" Type="float" />
+  </EntityType>
+  <EntityType Name="交易记录">
+    <Key>
+      <PropertyRef Name="RecordId" />
+    </Key>
+    <Property Name="RecordId" Type="int" Nullable="false" />
+    <Property Name="交易金额" Type="float" />
+    <Property Name="交易时间" Type="date" />
+    <Property Name="AccountId" Type="nchar" MaxLength="5" />
+    <Property Name="本金" Type="money" />
+    <Property Name="利息" Type="float" />
+  </EntityType>
+  <EntityType Name="员工">
+    <Key>
+      <PropertyRef Name="employerID" />
+    </Key>
+    <Property Name="employerID" Type="int" Nullable="false" />
+    <Property Name="姓名" Type="nchar" MaxLength="10" />
+    <Property Name="年龄" Type="nchar" MaxLength="10" />
+    <Property Name="性别" Type="nchar" MaxLength="10" />
+    <Property Name="月薪" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK_交易记录_ToTable">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="交易记录" Type="Self.交易记录" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountId" />
+      </Principal>
+      <Dependent Role="交易记录">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BankModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="交易记录" EntityType="Self.交易记录" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="员工" EntityType="Self.员工" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_交易记录_ToTable" Association="Self.FK_交易记录_ToTable">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="交易记录" EntitySet="交易记录" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

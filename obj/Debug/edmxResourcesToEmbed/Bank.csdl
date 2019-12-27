@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Account_ID" />
+    </Key>
+    <Property Name="Account_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ID_Number" Type="String" MaxLength="18" FixedLength="true" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Money" Type="Double" />
+    <Property Name="Account_Type" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="Opening_Time" Type="DateTime" Precision="0" />
+    <Property Name="Terms" Type="Int32" />
+    <Property Name="Rate" Type="Double" />
+    <Property Name="Password" Type="String" MaxLength="18" FixedLength="true" Unicode="true" />
+    <Property Name="Fixed_deposit" Type="Double" />
+    <Property Name="到期时间" Type="DateTime" Precision="0" />
+    <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="是否按规定存款" Type="Byte" />
+    <NavigationProperty Name="Record" Relationship="Self.FK_Record_ToTable" FromRole="Account" ToRole="Record" />
+  </EntityType>
+  <EntityType Name="Employer">
+    <Key>
+      <PropertyRef Name="Employer_ID" />
+    </Key>
+    <Property Name="Employer_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="Sallery" Type="Double" />
+    <Property Name="is_Administrator" Type="Byte" />
+    <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Rate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Types" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Terms" Type="Int32" />
+    <Property Name="Rate1" Type="Double" />
+    <Property Name="Rate2" Type="Double" />
+    <Property Name="Rate3" Type="Double" />
+  </EntityType>
+  <EntityType Name="Record">
+    <Key>
+      <PropertyRef Name="Record_ID" />
+    </Key>
+    <Property Name="Record_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Trading_Amount" Type="Double" />
+    <Property Name="Trading_Time" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Account_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Capital" Type="Double" />
+    <Property Name="Interest" Type="Double" />
+    <Property Name="Operation_Type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Record_ToTable" FromRole="Record" ToRole="Account" />
+  </EntityType>
+  <Association Name="FK_Record_ToTable">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Record" Type="Self.Record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Account_ID" />
+      </Principal>
+      <Dependent Role="Record">
+        <PropertyRef Name="Account_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BankEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Account" EntityType="Self.Account" />
+    <EntitySet Name="Employer" EntityType="Self.Employer" />
+    <EntitySet Name="Rate" EntityType="Self.Rate" />
+    <EntitySet Name="Record" EntityType="Self.Record" />
+    <AssociationSet Name="FK_Record_ToTable" Association="Self.FK_Record_ToTable">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Record" EntitySet="Record" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

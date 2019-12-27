@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Account_ID" />
+    </Key>
+    <Property Name="Account_ID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="ID_Number" Type="nchar" MaxLength="18" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Money" Type="float" />
+    <Property Name="Account_Type" Type="nvarchar" MaxLength="4" />
+    <Property Name="Opening_Time" Type="date" />
+    <Property Name="Terms" Type="int" />
+    <Property Name="Rate" Type="float" />
+    <Property Name="Password" Type="nchar" MaxLength="18" />
+    <Property Name="Fixed_deposit" Type="float" />
+    <Property Name="到期时间" Type="date" />
+    <Property Name="Picture" Type="varbinary(max)" />
+    <Property Name="是否按规定存款" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="Employer">
+    <Key>
+      <PropertyRef Name="Employer_ID" />
+    </Key>
+    <Property Name="Employer_ID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="10" />
+    <Property Name="Age" Type="int" />
+    <Property Name="Gender" Type="nchar" MaxLength="1" />
+    <Property Name="Sallery" Type="float" />
+    <Property Name="is_Administrator" Type="tinyint" />
+    <Property Name="Password" Type="nchar" MaxLength="10" />
+    <Property Name="Picture" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Rate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="Types" Type="nvarchar" MaxLength="10" />
+    <Property Name="Terms" Type="int" />
+    <Property Name="Rate1" Type="float" />
+    <Property Name="Rate2" Type="float" />
+    <Property Name="Rate3" Type="float" />
+  </EntityType>
+  <EntityType Name="Record">
+    <Key>
+      <PropertyRef Name="Record_ID" />
+    </Key>
+    <Property Name="Record_ID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Trading_Amount" Type="float" />
+    <Property Name="Trading_Time" Type="date" Nullable="false" />
+    <Property Name="Account_ID" Type="nchar" MaxLength="10" />
+    <Property Name="Capital" Type="float" />
+    <Property Name="Interest" Type="float" />
+    <Property Name="Operation_Type" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK_Record_ToTable">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Record" Type="Self.Record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Account_ID" />
+      </Principal>
+      <Dependent Role="Record">
+        <PropertyRef Name="Account_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BankModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employer" EntityType="Self.Employer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rate" EntityType="Self.Rate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Record" EntityType="Self.Record" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Record_ToTable" Association="Self.FK_Record_ToTable">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Record" EntitySet="Record" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

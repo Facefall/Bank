@@ -1,0 +1,93 @@
+﻿<Window x:Class="BankManagement_Assignment.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        WindowStyle="None" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Height="600" Width="1024" 
+        >
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Column="1" Grid.Row="1" >
+            <Frame Name="MainPage" NavigationUIVisibility="Hidden" Margin="-10,0,10,-0.4" />
+        </Grid>
+        <Grid Grid.Row="1" Background="#FFEEEEEE">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" RenderingBias="Quality" ShadowDepth="1" Color="#FFE1E4E4"></DropShadowEffect>
+            </Grid.Effect>
+
+            <Grid Background="#FF9E6AE8" >
+                <TextBlock Foreground="white" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="DASHBOARD" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+
+            <StackPanel Grid.Row="1">
+                <Button Click="Button_Click" x:Name="MainPage1" Margin="10">
+                    <Grid Width="150">
+                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="ViewDashboard" />
+                        <TextBlock Style="{StaticResource MaterialDesignSubtitle1TextBlock}" HorizontalAlignment="Center" Text="主页"></TextBlock>
+                    </Grid>
+                </Button>
+                <Button Click="Button_Click" x:Name="WithDraw1" Margin="10" >
+                    <Grid Width="150">
+                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="AttachMoney" />
+                        <TextBlock Style="{StaticResource MaterialDesignSubtitle1TextBlock}" HorizontalAlignment="Center" Text="取款"></TextBlock>
+                    </Grid>
+                </Button>
+                <Button Click="Button_Click" x:Name="Deposit1" Margin="10" >
+                    <Grid Width="150">
+                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="AttachMoney" />
+                        <TextBlock Style="{StaticResource MaterialDesignSubtitle1TextBlock}" HorizontalAlignment="Center" Text="存款"></TextBlock>
+                    </Grid>
+                </Button>
+                <Button Click="Button_Click" x:Name="Query1" Margin="10" >
+                    <Grid Width="150">
+                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="SelectionSearch" />
+                        <TextBlock Style="{StaticResource MaterialDesignSubtitle1TextBlock}" HorizontalAlignment="Center" Text="查询"></TextBlock>
+                    </Grid>
+                </Button>
+                <Button Click="Button_Click" x:Name="StuffManage1" Margin="10" >
+                    <Grid Width="150">
+                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="AccountEditOutline" />
+                        <TextBlock Style="{StaticResource MaterialDesignSubtitle1TextBlock}" HorizontalAlignment="Center" Text="职员管理"></TextBlock>
+                    </Grid>
+                </Button>
+                <Button Click="Button_Click" x:Name="Rate1" Margin="10" >
+                    <Grid Width="150">
+                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="BankOutline" />
+                        <TextBlock Style="{StaticResource MaterialDesignSubtitle1TextBlock}" HorizontalAlignment="Center" Text="利率"></TextBlock>
+                    </Grid>
+                </Button>
+                <Button Click="Button_Click" x:Name="UpdatePassword1" Margin="10" >
+                    <Grid Width="150">
+                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="Onepassword" />
+                        <TextBlock Style="{StaticResource MaterialDesignSubtitle1TextBlock}" HorizontalAlignment="Center" Text="修改密码"></TextBlock>
+                    </Grid>
+                </Button>
+            </StackPanel>
+
+        </Grid>
+        
+        <Grid x:Name="GridBar" MouseDown="GridBar_MouseDown"  Grid.ColumnSpan="2" Background="#FF8522BD">
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Background="{x:Null}" >
+                <Button Foreground="White" Margin="0,0,0,0" Click="Page_Minimize" BorderBrush = "{x:Null}" Background="{x:Null}" Style="{StaticResource MaterialDesignRaisedLightButton}" Height="Auto">
+                    <materialDesign:PackIcon Kind = "WindowMinimize" />
+                </Button>
+                <Button Click="Page_Close" Foreground="White" Margin="0,0,0,0" Style="{StaticResource ResourceKey=MaterialDesignRaisedLightButton}" BorderBrush="{x:Null}" Width="48" Height="Auto" Background="{x:Null}">
+                    <materialDesign:PackIcon Kind="Power" />
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
